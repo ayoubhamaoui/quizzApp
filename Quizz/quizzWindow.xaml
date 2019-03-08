@@ -13,30 +13,33 @@
             Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
             Padding="8" Height="312">
             <StackPanel>
-                <TextBlock Margin="16 16 12 8" FontSize="16">
-                    Notes
+                <TextBlock Margin="16 16 12 8" FontSize="20" Text="" Name="txtMatiere">
+
+                </TextBlock>
+                <TextBlock Margin="16 16 12 8" FontSize="16" Name="txtQuestion">
+                    
                 </TextBlock>
                 <StackPanel Margin="8 0 8 8" Orientation="Horizontal" HorizontalAlignment="Right"/>
                 <CheckBox
                         Margin="16 4 16 0"
-                        Style="{StaticResource MaterialDesignUserForegroundCheckBox}" Content="And go create" Height="40"/>
+                        Style="{StaticResource MaterialDesignUserForegroundCheckBox}" Name="txtAnswer1" Height="40"/>
                 <CheckBox
                         Margin="16 4 16 0"
-                        Style="{StaticResource MaterialDesignUserForegroundCheckBox}" Content="Take a breather" Height="40"/>
+                        Style="{StaticResource MaterialDesignUserForegroundCheckBox}" Name="txtAnswer2" Height="40"/>
                 <CheckBox
                         Margin="16 4 16 0"
-                        Style="{StaticResource MaterialDesignUserForegroundCheckBox}" Content="Do something good" Height="40"/>
+                        Style="{StaticResource MaterialDesignUserForegroundCheckBox}" Name="txtAnswer3" Height="40"/>
                 <CheckBox
                         Margin="16 4 16 0"
-                        Style="{StaticResource MaterialDesignUserForegroundCheckBox}" Content="Do something good" Height="40"/>
+                        Style="{StaticResource MaterialDesignUserForegroundCheckBox}" Name="txtAnswer4" Height="40"/>
             </StackPanel>
         </materialDesign:Card>
-        <Button
+        <Button Click="btnSuivant"
             Style="{StaticResource MaterialDesignRaisedAccentButton}"
             ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="604,328,68,49" Height="Auto">
             Suivant
         </Button>
-        <Button
+        <Button Click="btnPrecedent"
             Style="{StaticResource MaterialDesignRaisedDarkButton}"
             ToolTip="Resource name: MaterialDesignRaisedDarkButton" Margin="70,328,602,49" Height="Auto">
             Précédent

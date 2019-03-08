@@ -19,9 +19,26 @@ namespace Quizz
     /// </summary>
     public partial class quizzWindow : Window
     {
+        private LinqQuizzDataContext MyDB = new LinqQuizzDataContext();
         public quizzWindow()
         {
             InitializeComponent();
+            string matiere = "POO CSharp";
+            txtMatiere.Text = "Matière: "+matiere;
+            int i = 0;
+            var question = (from qst in MyDB.questions
+                               where qst.id_m == matiere.ToString()
+                               select qst).First();
+            txtQuestion.Text = question.question1+"?";
+        }
+        private void btnSuivant(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("button suivant");
+        }
+
+        private void btnPrecedent(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("button Precedent");
         }
     }
 }
