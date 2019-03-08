@@ -4,9 +4,42 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Quizz"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="quizzWindow" Height="450" Width="800">
     <Grid>
-        
+        <materialDesign:Card
+            Background="{DynamicResource PrimaryHueDarkBrush}"
+            Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+            Padding="8" Height="312">
+            <StackPanel>
+                <TextBlock Margin="16 16 12 8" FontSize="16">
+                    Notes
+                </TextBlock>
+                <StackPanel Margin="8 0 8 8" Orientation="Horizontal" HorizontalAlignment="Right"/>
+                <CheckBox
+                        Margin="16 4 16 0"
+                        Style="{StaticResource MaterialDesignUserForegroundCheckBox}" Content="And go create" Height="40"/>
+                <CheckBox
+                        Margin="16 4 16 0"
+                        Style="{StaticResource MaterialDesignUserForegroundCheckBox}" Content="Take a breather" Height="40"/>
+                <CheckBox
+                        Margin="16 4 16 0"
+                        Style="{StaticResource MaterialDesignUserForegroundCheckBox}" Content="Do something good" Height="40"/>
+                <CheckBox
+                        Margin="16 4 16 0"
+                        Style="{StaticResource MaterialDesignUserForegroundCheckBox}" Content="Do something good" Height="40"/>
+            </StackPanel>
+        </materialDesign:Card>
+        <Button
+            Style="{StaticResource MaterialDesignRaisedAccentButton}"
+            ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="604,328,68,49" Height="Auto">
+            Suivant
+        </Button>
+        <Button
+            Style="{StaticResource MaterialDesignRaisedDarkButton}"
+            ToolTip="Resource name: MaterialDesignRaisedDarkButton" Margin="70,328,602,49" Height="Auto">
+            Précédent
+        </Button>
     </Grid>
 </Window>

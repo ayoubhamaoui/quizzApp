@@ -39,6 +39,9 @@ namespace Quizz
     partial void Insertuser(user instance);
     partial void Updateuser(user instance);
     partial void Deleteuser(user instance);
+    partial void Insertresult(result instance);
+    partial void Updateresult(result instance);
+    partial void Deleteresult(result instance);
     #endregion
 		
 		public LinqQuizzDataContext() : 
@@ -94,6 +97,14 @@ namespace Quizz
 				return this.GetTable<user>();
 			}
 		}
+		
+		public System.Data.Linq.Table<result> results
+		{
+			get
+			{
+				return this.GetTable<result>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.matieres")]
@@ -108,6 +119,8 @@ namespace Quizz
 		
 		private EntitySet<question> _questions;
 		
+		private EntitySet<result> _results;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -121,6 +134,7 @@ namespace Quizz
 		public matiere()
 		{
 			this._questions = new EntitySet<question>(new Action<question>(this.attach_questions), new Action<question>(this.detach_questions));
+			this._results = new EntitySet<result>(new Action<result>(this.attach_results), new Action<result>(this.detach_results));
 			OnCreated();
 		}
 		
@@ -177,6 +191,19 @@ namespace Quizz
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="matiere_result", Storage="_results", ThisKey="id_m", OtherKey="id_m")]
+		public EntitySet<result> results
+		{
+			get
+			{
+				return this._results;
+			}
+			set
+			{
+				this._results.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -204,6 +231,18 @@ namespace Quizz
 		}
 		
 		private void detach_questions(question entity)
+		{
+			this.SendPropertyChanging();
+			entity.matiere = null;
+		}
+		
+		private void attach_results(result entity)
+		{
+			this.SendPropertyChanging();
+			entity.matiere = this;
+		}
+		
+		private void detach_results(result entity)
 		{
 			this.SendPropertyChanging();
 			entity.matiere = null;
@@ -491,6 +530,8 @@ namespace Quizz
 		
 		private string _mdp;
 		
+		private EntitySet<result> _results;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -503,6 +544,7 @@ namespace Quizz
 		
 		public user()
 		{
+			this._results = new EntitySet<result>(new Action<result>(this.attach_results), new Action<result>(this.detach_results));
 			OnCreated();
 		}
 		
@@ -542,6 +584,247 @@ namespace Quizz
 					this._mdp = value;
 					this.SendPropertyChanged("mdp");
 					this.OnmdpChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="user_result", Storage="_results", ThisKey="id_u", OtherKey="id_u")]
+		public EntitySet<result> results
+		{
+			get
+			{
+				return this._results;
+			}
+			set
+			{
+				this._results.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_results(result entity)
+		{
+			this.SendPropertyChanging();
+			entity.user = this;
+		}
+		
+		private void detach_results(result entity)
+		{
+			this.SendPropertyChanging();
+			entity.user = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.result")]
+	public partial class result : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _id_u;
+		
+		private string _id_m;
+		
+		private System.Nullable<double> _note;
+		
+		private EntityRef<matiere> _matiere;
+		
+		private EntityRef<user> _user;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void Onid_uChanging(string value);
+    partial void Onid_uChanged();
+    partial void Onid_mChanging(string value);
+    partial void Onid_mChanged();
+    partial void OnnoteChanging(System.Nullable<double> value);
+    partial void OnnoteChanged();
+    #endregion
+		
+		public result()
+		{
+			this._matiere = default(EntityRef<matiere>);
+			this._user = default(EntityRef<user>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_u", DbType="VarChar(55)")]
+		public string id_u
+		{
+			get
+			{
+				return this._id_u;
+			}
+			set
+			{
+				if ((this._id_u != value))
+				{
+					if (this._user.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_uChanging(value);
+					this.SendPropertyChanging();
+					this._id_u = value;
+					this.SendPropertyChanged("id_u");
+					this.Onid_uChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_m", DbType="VarChar(25)")]
+		public string id_m
+		{
+			get
+			{
+				return this._id_m;
+			}
+			set
+			{
+				if ((this._id_m != value))
+				{
+					if (this._matiere.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onid_mChanging(value);
+					this.SendPropertyChanging();
+					this._id_m = value;
+					this.SendPropertyChanged("id_m");
+					this.Onid_mChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_note", DbType="Float")]
+		public System.Nullable<double> note
+		{
+			get
+			{
+				return this._note;
+			}
+			set
+			{
+				if ((this._note != value))
+				{
+					this.OnnoteChanging(value);
+					this.SendPropertyChanging();
+					this._note = value;
+					this.SendPropertyChanged("note");
+					this.OnnoteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="matiere_result", Storage="_matiere", ThisKey="id_m", OtherKey="id_m", IsForeignKey=true)]
+		public matiere matiere
+		{
+			get
+			{
+				return this._matiere.Entity;
+			}
+			set
+			{
+				matiere previousValue = this._matiere.Entity;
+				if (((previousValue != value) 
+							|| (this._matiere.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._matiere.Entity = null;
+						previousValue.results.Remove(this);
+					}
+					this._matiere.Entity = value;
+					if ((value != null))
+					{
+						value.results.Add(this);
+						this._id_m = value.id_m;
+					}
+					else
+					{
+						this._id_m = default(string);
+					}
+					this.SendPropertyChanged("matiere");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="user_result", Storage="_user", ThisKey="id_u", OtherKey="id_u", IsForeignKey=true)]
+		public user user
+		{
+			get
+			{
+				return this._user.Entity;
+			}
+			set
+			{
+				user previousValue = this._user.Entity;
+				if (((previousValue != value) 
+							|| (this._user.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._user.Entity = null;
+						previousValue.results.Remove(this);
+					}
+					this._user.Entity = value;
+					if ((value != null))
+					{
+						value.results.Add(this);
+						this._id_u = value.id_u;
+					}
+					else
+					{
+						this._id_u = default(string);
+					}
+					this.SendPropertyChanged("user");
 				}
 			}
 		}

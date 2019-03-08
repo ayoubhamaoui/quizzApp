@@ -5,6 +5,7 @@
       <Column Name="id_m" Type="System.String" DbType="VarChar(25) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="label" Type="System.String" DbType="VarChar(55)" CanBeNull="true" />
       <Association Name="matiere_question" Member="questions" ThisKey="id_m" OtherKey="id_m" Type="question" />
+      <Association Name="matiere_result" Member="results" ThisKey="id_m" OtherKey="id_m" Type="result" />
     </Type>
   </Table>
   <Table Name="dbo.questions" Member="questions">
@@ -24,6 +25,17 @@
     <Type Name="user">
       <Column Name="id_u" Type="System.String" DbType="VarChar(55) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="mdp" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Association Name="user_result" Member="results" ThisKey="id_u" OtherKey="id_u" Type="result" />
+    </Type>
+  </Table>
+  <Table Name="dbo.result" Member="results">
+    <Type Name="result">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_u" Type="System.String" DbType="VarChar(55)" CanBeNull="true" />
+      <Column Name="id_m" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="note" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="matiere_result" Member="matiere" ThisKey="id_m" OtherKey="id_m" Type="matiere" IsForeignKey="true" />
+      <Association Name="user_result" Member="user" ThisKey="id_u" OtherKey="id_u" Type="user" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
