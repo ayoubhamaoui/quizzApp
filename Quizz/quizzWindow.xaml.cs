@@ -30,6 +30,12 @@ namespace Quizz
                                where qst.id_m == matiere.ToString()
                                select qst).First();
             txtQuestion.Text = question.question1+"?";
+            txtAnswer2.Content = question.answer2;
+            txtAnswer3.Content = question.answer1;
+            txtAnswer1.Content = question.answer3;
+            txtAnswer4.Content = question.trueAnwer;
+
+
         }
         private void btnSuivant(object sender, RoutedEventArgs e)
         {

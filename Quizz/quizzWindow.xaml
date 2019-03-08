@@ -20,7 +20,7 @@
                     
                 </TextBlock>
                 <StackPanel Margin="8 0 8 8" Orientation="Horizontal" HorizontalAlignment="Right"/>
-                <CheckBox
+                <CheckBox  Content=""
                         Margin="16 4 16 0"
                         Style="{StaticResource MaterialDesignUserForegroundCheckBox}" Name="txtAnswer1" Height="40"/>
                 <CheckBox
