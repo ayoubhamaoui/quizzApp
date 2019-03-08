@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="quizz" Class="LinqQuizzDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=Hamaoui;Initial Catalog=quizz;Integrated Security=True" SettingsObjectName="Quizz.Properties.Settings" SettingsPropertyName="quizzConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.matieres" Member="matieres">
+    <Type Name="matiere">
+      <Column Name="id_m" Type="System.String" DbType="VarChar(25) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="label" Type="System.String" DbType="VarChar(55)" CanBeNull="true" />
+      <Association Name="matiere_question" Member="questions" ThisKey="id_m" OtherKey="id_m" Type="question" />
+    </Type>
+  </Table>
+  <Table Name="dbo.questions" Member="questions">
+    <Type Name="question">
+      <Column Name="id_q" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="question" Member="question1" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="trueAnwer" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="answer1" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="answer2" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="answer3" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="id_m" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="note" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="matiere_question" Member="matiere" ThisKey="id_m" OtherKey="id_m" Type="matiere" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.users" Member="users">
+    <Type Name="user">
+      <Column Name="id_u" Type="System.String" DbType="VarChar(55) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="mdp" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

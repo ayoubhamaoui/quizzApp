@@ -1,0 +1,112 @@
+﻿<Window x:Class="Quizz.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Quizz"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="MainWindow" Height="653.177" Width="517.057">
+    <Grid Margin="10,0,-8,-56">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="166*"/>
+            <ColumnDefinition Width="163*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="63*"/>
+            <RowDefinition Height="47*"/>
+        </Grid.RowDefinitions>
+        <materialDesign:Flipper Width="511" Grid.RowSpan="2" VerticalAlignment="Stretch" Margin="-14,-119,0,-16" Grid.ColumnSpan="2">
+            <materialDesign:Flipper.FrontContent>
+                <Button
+      Style="{StaticResource MaterialDesignFlatButton}"
+      Command="{x:Static materialDesign:Flipper.FlipCommand}"
+      Margin="8"
+      Width="192">
+                    Connexion
+                </Button>
+            </materialDesign:Flipper.FrontContent>
+            <materialDesign:Flipper.BackContent>
+                <Grid
+      Height="256"
+      Width="200">
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+          Height="Auto" />
+                        <RowDefinition
+          Height="*" />
+                    </Grid.RowDefinitions>
+                    <materialDesign:ColorZone
+        Mode="Accent"
+        Padding="6">
+                        <StackPanel
+          Orientation="Horizontal">
+                            <Button
+            Style="{StaticResource MaterialDesignToolForegroundButton}"
+            Command="{x:Static materialDesign:Flipper.FlipCommand}"
+            HorizontalAlignment="Left">
+                                <materialDesign:PackIcon
+              Kind="ArrowLeft"
+              HorizontalAlignment="Right" />
+                            </Button>
+                            <TextBlock
+            Margin="8 0 0 0"
+            VerticalAlignment="Center">
+          Connexion
+                            </TextBlock>
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                    <Grid
+        Grid.Row="1"
+        Margin="0 6 0 0"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        Width="172">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBox Name="txtLogin"
+          materialDesign:HintAssist.Hint="Login"
+          materialDesign:HintAssist.IsFloating="True"
+          Margin="0 12 0 0">
+
+                        </TextBox>
+                        <PasswordBox
+          Grid.Row="1"
+          materialDesign:HintAssist.Hint="password"
+          materialDesign:HintAssist.IsFloating="True"
+          Margin="0 12 0 0" Name="txtPassword">
+
+                        </PasswordBox>
+                        <StackPanel
+          Grid.Row="2"
+          Orientation="Horizontal"
+          Margin="0 12 0 0"
+          HorizontalAlignment="Right">
+
+                            <Button Click="Login"
+                                    Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                    ToolTip="MaterialDesignFloatingActionMiniDarkButton">
+                                <materialDesign:PackIcon
+                                    Kind="Login"
+                                    Height="4"
+                                    Width="4" />
+                            </Button>
+                        </StackPanel>
+
+                    </Grid>
+                </Grid>
+            </materialDesign:Flipper.BackContent>
+        </materialDesign:Flipper>
+    </Grid>
+</Window>
